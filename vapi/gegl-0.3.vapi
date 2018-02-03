@@ -545,17 +545,12 @@ namespace Gegl {
 		public float x;
 		public float y;
 	}
-	[CCode (cheader_filename = "gegl.h", cprefix = "", type_id = "gegl_abyss_policy_get_type ()")]
+	[CCode (cheader_filename = "gegl.h", cprefix = "GEGL_ABYSS_", type_id = "gegl_abyss_policy_get_type ()")]
 	public enum AbyssPolicy {
-		[CCode (cname = "None")]
 		NONE,
-		[CCode (cname = "Clamp")]
 		CLAMP,
-		[CCode (cname = "Loop")]
 		LOOP,
-		[CCode (cname = "Black")]
 		BLACK,
-		[CCode (cname = "White")]
 		WHITE
 	}
 	[CCode (cheader_filename = "gegl.h", cprefix = "", type_id = "gegl_access_mode_get_type ()")]

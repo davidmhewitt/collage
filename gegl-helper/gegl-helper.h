@@ -17,24 +17,15 @@
  * along with Collage.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Collage.Application : Gtk.Application {
-    private MainWindow? window = null;
+#ifndef GEGL_HELPER_HEADER
+#define GEGL_HELPER_HEADER
 
-    construct {
-        application_id = "com.github.davidmhewitt.collage";
-        flags = ApplicationFlags.FLAGS_NONE;
-    }
+#include <gegl.h>
 
-    protected override void activate () {
-        if (window == null) {
-            window = new MainWindow ();
-            add_window (window);
-        }
-    }
-
-    public static int main (string[] args) {
-        Gegl.init (ref args);
-        var app = new Collage.Application ();
-        return app.run (args);
-    }
-}
+GeglBuffer *gegl_helper_new_cairo_buffer(gint x, gint y, gint width,
+                                         gint height);
+GeglRectangle *gegl_helper_node_get_bounding_box(GeglNode *node);
+guchar *gegl_helper_buffer_get(GeglBuffer *buffer, const GeglRectangle *rect,
+                               gdouble scale, const gchar *format_name,
+                               GeglAbyssPolicy repeat_mode, guint *data_length);
+#endif

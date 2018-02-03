@@ -17,24 +17,24 @@
  * along with Collage.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Collage.Application : Gtk.Application {
-    private MainWindow? window = null;
+public class Collage.MainWindow : Gtk.Window {
+    Gegl.Node gegl;
+    Gegl.Node load;
 
     construct {
-        application_id = "com.github.davidmhewitt.collage";
-        flags = ApplicationFlags.FLAGS_NONE;
-    }
+        title = "Collage";
+        set_default_size (400, 400);
 
-    protected override void activate () {
-        if (window == null) {
-            window = new MainWindow ();
-            add_window (window);
-        }
-    }
+		gegl = new Gegl.Node ();
+		load = gegl.create_child ("gegl:load");
+		load.set_property ("path", "data/test.png");
+        load.process ();
 
-    public static int main (string[] args) {
-        Gegl.init (ref args);
-        var app = new Collage.Application ();
-        return app.run (args);
+        var view = new GeglGTKView.for_node (load);
+        view.hexpand = true;
+        view.vexpand = true;
+        add (view);
+
+        show_all ();
     }
 }
