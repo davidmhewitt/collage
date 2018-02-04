@@ -187,8 +187,10 @@ public class Collage.GeglGTKViewHelper : Object {
         var format = Cairo.Format.ARGB32;
         var stride = format.stride_for_width (roi.width);
 
-        var buffer = GeglHelper.new_cairo_buffer (0, 0, roi.width, roi.height);
-        node.blit_buffer (buffer, roi, 0, Gegl.AbyssPolicy.NONE);
+        var bbox = GeglHelper.node_get_bounding_box (node);
+        var buffer = GeglHelper.new_cairo_buffer (0, 0, bbox.width, bbox.height);
+        node.blit_buffer (buffer, bbox, 0, Gegl.AbyssPolicy.NONE);
+
         var data = GeglHelper.buffer_get (buffer, roi, scale, "cairo-ARGB32", Gegl.AbyssPolicy.NONE);
         var surface = new Cairo.ImageSurface.for_data (data, format, roi.width, roi.height, stride);
 
