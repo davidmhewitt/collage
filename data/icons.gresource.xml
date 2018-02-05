@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/github/davidmhewitt/collage">
+    <file alias="layout0-symbolic.svg" compressed="true" preprocess="xml-stripblanks">layout0-symbolic.svg</file>
+    <file alias="layout1-symbolic.svg" compressed="true" preprocess="xml-stripblanks">layout1-symbolic.svg</file>
+    <file alias="layout2-symbolic.svg" compressed="true" preprocess="xml-stripblanks">layout2-symbolic.svg</file>
+    <file alias="layout3-symbolic.svg" compressed="true" preprocess="xml-stripblanks">layout3-symbolic.svg</file>
+    <file alias="magic-wand-symbolic.svg" compressed="true" preprocess="xml-stripblanks">magic-wand-symbolic.svg</file>
+    <file alias="sticker-symbolic.svg" compressed="true" preprocess="xml-stripblanks">sticker-symbolic.svg</file>
+    <file alias="picture-frame-symbolic.svg" compressed="true" preprocess="xml-stripblanks">picture-frame-symbolic.svg</file>
+  </gresource>
+</gresources>

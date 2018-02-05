@@ -22,8 +22,13 @@ public class Collage.MainWindow : Gtk.Window {
     Gegl.Node load;
 
     construct {
+        Gtk.IconTheme.get_default ().add_resource_path ("/com/github/davidmhewitt/collage");
+        var provider = new Gtk.CssProvider ();
+        provider.load_from_resource ("com/github/davidmhewitt/collage/application.css");
+        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
         title = "Collage";
-        set_default_size (400, 400);
+        set_default_size (1000, 600);
 
 		gegl = new Gegl.Node ();
 		load = gegl.create_child ("gegl:load");
@@ -33,7 +38,13 @@ public class Collage.MainWindow : Gtk.Window {
         var view = new GeglGTKView.for_node (load);
         view.hexpand = true;
         view.vexpand = true;
-        add (view);
+
+        var grid = new Gtk.Grid ();
+        var sidebar = new Widgets.SidebarTabContainer ();
+
+        grid.add (sidebar);
+        grid.add (view);
+        add (grid);
 
         show_all ();
     }
