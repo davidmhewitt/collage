@@ -1,7 +1,7 @@
 code_files = files(
     'Application.vala',
-    'GeglGTKViewHelper.vala',
     'MainWindow.vala',
+    'Helpers/GeglGTKViewHelper.vala',
     'Widgets/GeglGTKView.vala',
     'Widgets/PictureDropArea.vala',
     'Widgets/SidebarTabContainer.vala',

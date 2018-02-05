@@ -36,6 +36,7 @@ public class Collage.MainWindow : Gtk.Window {
         load.process ();
 
         var view = new GeglGTKView.for_node (load);
+        view.set_size_request (400, 400);
         view.hexpand = true;
         view.vexpand = true;
 
