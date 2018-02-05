@@ -17,24 +17,16 @@
  * along with Collage.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- .sidebar-tab {
-     padding: 12px;
-     margin-top: 6px;
-     margin-bottom: 6px;
-     margin-left: 6px;
- }
-
- .sidebar-tab.selected {
-     background-color: white;
-     border-radius: 5px 0 0 5px;
-     border-style: solid none solid solid;
-     border-color: #bebebe;
-     border-width: 1px;
-     box-shadow: 2px 3px 5px 0px alpha (#000, 0.2);
- }
-
- .sidebar-palette {
-     border-radius: 5px;
-     background-color: white;
-     box-shadow: 2px 3px 2px 0px alpha (#000, 0.2);
+public class Collage.Widgets.PictureDropArea : Gtk.Grid {
+    construct {
+        orientation = Gtk.Orientation.VERTICAL;
+        vexpand = true;
+        margin_end = 12;
+        margin_start = 6;
+        margin_top = 24;
+        margin_bottom = 12;
+        
+        set_size_request (200, 100);
+        get_style_context ().add_class ("sidebar-palette");
+    }
  }

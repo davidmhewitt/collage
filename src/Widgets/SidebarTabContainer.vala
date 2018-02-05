@@ -42,6 +42,9 @@ public class Collage.Widgets.SidebarTabContainer : Gtk.Grid {
         sidebar_palette.vexpand = true;
         sidebar_palette.set_size_request (200, 100);
         sidebar_palette.get_style_context ().add_class ("sidebar-palette");
+        sidebar_palette.margin_end = 6;
+        sidebar_palette.margin_top = 24;
+        sidebar_palette.margin_bottom = 12;
 
         attach (sidebar_palette, 1, 0, 1, 1);
         attach (sidebar_grid, 0, 0, 1, 1);
