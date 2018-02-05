@@ -43,7 +43,7 @@ public class Collage.Widgets.SidebarTabContainer : Gtk.Grid {
         sidebar_palette.set_size_request (200, 100);
         sidebar_palette.get_style_context ().add_class ("sidebar-palette");
 
-        add (sidebar_grid);
-        add (sidebar_palette);
+        attach (sidebar_palette, 1, 0, 1, 1);
+        attach (sidebar_grid, 0, 0, 1, 1);
     }
  }
