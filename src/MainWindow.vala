@@ -40,14 +40,14 @@ public class Collage.MainWindow : Gtk.Window {
         view.hexpand = true;
         view.vexpand = true;
 
+        var picture_drop_area = new Widgets.PictureDropSidebar ();
         var sidebar = new Widgets.SidebarTabContainer ();
-        var picture_drop_area = new Widgets.PictureDropArea ();
 
         var grid = new Gtk.Grid ();
         grid.add (picture_drop_area);
         grid.add (view);
         grid.add (sidebar);
-        
+
         add (grid);
 
         show_all ();

@@ -19,7 +19,6 @@
 
 public class Collage.Widgets.SidebarTabContainer : Gtk.Grid {
     construct {
-
         var sidebar_grid = new Gtk.Grid ();
         sidebar_grid.orientation = Gtk.Orientation.VERTICAL;
         sidebar_grid.vexpand = true;
@@ -43,7 +42,7 @@ public class Collage.Widgets.SidebarTabContainer : Gtk.Grid {
         sidebar_palette.set_size_request (200, 100);
         sidebar_palette.get_style_context ().add_class ("sidebar-palette");
         sidebar_palette.margin_start = 6;
-        sidebar_palette.margin_top = 24;
+        sidebar_palette.margin_top = 12;
         sidebar_palette.margin_bottom = 12;
 
         attach (sidebar_grid, 1, 0, 1, 1);

@@ -41,3 +41,8 @@
      border-color: #bebebe;
      border-width: 1px;
  }
+
+ .picture-drop-area {
+     border: 3px dashed #c2cdda;
+     border-radius: 5px;
+ }

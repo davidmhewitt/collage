@@ -34,7 +34,6 @@ public class Collage.Widgets.SidebarTab : Gtk.Grid {
     public string icon_name {
         set {
             icon_button = new Gtk.Button.from_icon_name (value, Gtk.IconSize.DND);
-            // icon_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
             icon_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
             if (icon_button.parent != this) {
                 add (icon_button);
