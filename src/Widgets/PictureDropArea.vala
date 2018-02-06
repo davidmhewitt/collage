@@ -21,11 +21,11 @@ public class Collage.Widgets.PictureDropArea : Gtk.Grid {
     construct {
         orientation = Gtk.Orientation.VERTICAL;
         vexpand = true;
-        margin_end = 12;
-        margin_start = 6;
+        margin_end = 6;
+        margin_start = 12;
         margin_top = 24;
         margin_bottom = 12;
-        
+
         set_size_request (200, 100);
         get_style_context ().add_class ("sidebar-palette");
     }

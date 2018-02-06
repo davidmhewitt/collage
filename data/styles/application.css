@@ -21,20 +21,23 @@
      padding: 12px;
      margin-top: 6px;
      margin-bottom: 6px;
-     margin-left: 6px;
+     margin-right: 6px;
  }
 
  .sidebar-tab.selected {
      background-color: white;
-     border-radius: 5px 0 0 5px;
-     border-style: solid none solid solid;
+     border-radius: 0 5px 5px 0;
+     border-style: solid solid solid none;
      border-color: #bebebe;
      border-width: 1px;
-     box-shadow: 2px 3px 5px 0px alpha (#000, 0.2);
+     box-shadow: 4px 3px 4px 0px alpha (#000, 0.2);
  }
 
  .sidebar-palette {
      border-radius: 5px;
      background-color: white;
-     box-shadow: 2px 3px 2px 0px alpha (#000, 0.2);
+     box-shadow: 4px 3px 2px 0px alpha (#000, 0.2);
+     border-style: solid none solid solid;
+     border-color: #bebebe;
+     border-width: 1px;
  }

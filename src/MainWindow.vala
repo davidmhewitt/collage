@@ -44,9 +44,10 @@ public class Collage.MainWindow : Gtk.Window {
         var picture_drop_area = new Widgets.PictureDropArea ();
 
         var grid = new Gtk.Grid ();
-        grid.add (sidebar);
-        grid.add (view);
         grid.add (picture_drop_area);
+        grid.add (view);
+        grid.add (sidebar);
+        
         add (grid);
 
         show_all ();

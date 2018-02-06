@@ -18,7 +18,7 @@
  */
 
 public class Collage.Widgets.SidebarTab : Gtk.Grid {
-    private Gtk.Image? icon = null;
+    private Gtk.Button? icon_button = null;
     public Gtk.Container? content { get; set; default = null; }
 
     public bool selected {
@@ -33,9 +33,11 @@ public class Collage.Widgets.SidebarTab : Gtk.Grid {
 
     public string icon_name {
         set {
-            icon = new Gtk.Image.from_icon_name (value, Gtk.IconSize.DND);
-            if (icon.parent != this) {
-                add (icon);
+            icon_button = new Gtk.Button.from_icon_name (value, Gtk.IconSize.DND);
+            // icon_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+            icon_button.get_style_context ().add_class (Gtk.STYLE_CLASS_FLAT);
+            if (icon_button.parent != this) {
+                add (icon_button);
             }
         }
     }
