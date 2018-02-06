@@ -32,11 +32,12 @@ public class Collage.MainWindow : Gtk.Window {
 
 		gegl = new Gegl.Node ();
 		load = gegl.create_child ("gegl:load");
-		load.set_property ("path", "data/test.png");
+		load.set_property ("path", "data/test.jpg");
         load.process ();
 
         var view = new GeglGTKView.for_node (load);
         view.set_size_request (400, 400);
+        view.margin = 12;
         view.hexpand = true;
         view.vexpand = true;
 

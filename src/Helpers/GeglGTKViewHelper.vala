@@ -18,37 +18,14 @@
  */
 
 public class Collage.GeglGTKViewHelper : Object {
-    public enum AutoScalePolicy {
-        SCALE_CONTENT,
-        SCALE_WIDGET
-    }
-
     public signal void redraw_needed (Gegl.Rectangle rect);
     public signal void size_changed (Gegl.Rectangle rect);
 
     private Gegl.Processor? processor = null;
-    private float x = 0;
-    private float y = 0;
     private double scale = 1.0;
     private Queue<Gegl.Rectangle?> processing_queue;
     private uint monitor_id = 0;
     private Gegl.Rectangle? currently_processed_rect = null;
-
-    private AutoScalePolicy _autoscale_policy = AutoScalePolicy.SCALE_CONTENT;
-    public AutoScalePolicy autoscale_policy {
-        private get {
-            return _autoscale_policy;
-        }
-        set {
-            if (value == _autoscale_policy) {
-                return;
-            }
-
-            _autoscale_policy = value;
-            update_autoscale ();
-        }
-    }
-
     private Gdk.Rectangle? widget_allocation = null;
 
     private Gegl.Node? _node = null;
@@ -96,8 +73,8 @@ public class Collage.GeglGTKViewHelper : Object {
 
     private Gegl.Rectangle model_rect_to_view_rect (Gegl.Rectangle rect) {
         Gegl.Rectangle temp = new Gegl.Rectangle (0, 0, 0, 0);
-        temp.x = (int)(scale * rect.x - x);
-        temp.y = (int)(scale * rect.y - y);
+        temp.x = (int)(scale * rect.x);
+        temp.y = (int)(scale * rect.y);
         temp.width = (int)Math.ceil (scale * rect.width);
         temp.height = (int)Math.ceil (scale * rect.height);
 
@@ -114,15 +91,14 @@ public class Collage.GeglGTKViewHelper : Object {
             return;
         }
 
-        if (autoscale_policy == AutoScalePolicy.SCALE_WIDGET) {
-            size_changed (bbox);
-        } else if (autoscale_policy == AutoScalePolicy.SCALE_CONTENT) {
-            float width_ratio = bbox.width / (float)widget_allocation.width;
-            float height_ratio = bbox.height / (float)widget_allocation.height;
-            float max_ratio = width_ratio >= height_ratio ? width_ratio : height_ratio;
-
-            scale = (1.0 / max_ratio);
+        float width_ratio = bbox.width / (float)widget_allocation.width;
+        float height_ratio = bbox.height / (float)widget_allocation.height;
+        float max_ratio = width_ratio >= height_ratio ? width_ratio : height_ratio;
+        if (max_ratio < 1.0) {
+            max_ratio = 1.0f;
         }
+
+        scale = (1.0 / max_ratio);
     }
 
     private void trigger_processing (Gegl.Rectangle roi) {
@@ -179,8 +155,8 @@ public class Collage.GeglGTKViewHelper : Object {
     public void draw (Cairo.Context cr, Gdk.Rectangle rect) {
         Gegl.Rectangle roi = new Gegl.Rectangle (0, 0, 0, 0);
 
-        roi.x = (int)x + rect.x;
-        roi.y = (int)y + rect.y;
+        roi.x = rect.x;
+        roi.y = rect.y;
         roi.width = rect.width;
         roi.height = rect.height;
 
@@ -194,7 +170,17 @@ public class Collage.GeglGTKViewHelper : Object {
         var data = GeglHelper.buffer_get (buffer, roi, scale, "cairo-ARGB32", Gegl.AbyssPolicy.NONE);
         var surface = new Cairo.ImageSurface.for_data (data, format, roi.width, roi.height, stride);
 
-        cr.set_source_surface (surface, rect.x, rect.y);
+        var new_x = 0;
+        var new_y = 0;
+        if ((bbox.width * scale) < rect.width) {
+            new_x = (int)((rect.width / 2) - (bbox.width * scale / 2));
+        }
+
+        if ((bbox.height * scale) < rect.height) {
+            new_y = (int)((rect.height / 2) - (bbox.height * scale / 2));
+        }
+
+        cr.set_source_surface (surface, rect.x + new_x, rect.y + new_y);
         cr.paint ();
     }
 
