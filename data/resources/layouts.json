@@ -1,0 +1,40 @@
+{
+  "layouts": {
+    "layout0": {},
+    "layout1": {
+      "children": [
+        {
+          "type": "vertical",
+          "numerator": 1,
+          "denominator": 2
+        },
+        {
+          "type": "vertical",
+          "numerator": 1,
+          "denominator": 2
+        }
+      ]
+    },
+    "layout2": {
+      "children": [
+        {
+          "type": "vertical",
+          "numerator": 1,
+          "denominator": 2
+        },
+        {
+          "type": "vertical",
+          "numerator": 1,
+          "denominator": 2,
+          "children": [
+            {
+              "type": "horizontal",
+              "numerator": 2,
+              "denominator": 3
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

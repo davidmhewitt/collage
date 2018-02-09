@@ -19,6 +19,7 @@ gio_unix_dep = dependency('gio-unix-2.0', version: '>=2.20')
 gee_dep = dependency('gee-0.8', version: '>=0.8.5')
 gtk_dep = dependency('gtk+-3.0', version: '>=3.6.0')
 granite_dep = dependency('granite')
+json_dep = dependency('json-glib-1.0')
 
 dependencies = [
     glib_dep,
@@ -27,6 +28,7 @@ dependencies = [
     gtk_dep,
     gegl_dep,
     granite_dep,
+    json_dep,
     collage_gegl_helper_vapi
 ]
 

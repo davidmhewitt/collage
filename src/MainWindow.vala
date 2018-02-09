@@ -19,7 +19,6 @@
 
 public class Collage.MainWindow : Gtk.Window {
     Gegl.Node gegl;
-    Gegl.Node load;
 
     construct {
         Gtk.IconTheme.get_default ().add_resource_path ("/com/github/davidmhewitt/collage");
@@ -31,11 +30,9 @@ public class Collage.MainWindow : Gtk.Window {
         set_default_size (1000, 600);
 
 		gegl = new Gegl.Node ();
-		load = gegl.create_child ("gegl:load");
-		load.set_property ("path", "data/test.jpg");
-        load.process ();
+        var layout_helper = new LayoutHelper (ref gegl, 1920, 1920);
 
-        var view = new GeglGTKView.for_node (load);
+        var view = new GeglGTKView.for_node (layout_helper.border_node);
         view.set_size_request (400, 400);
         view.margin = 12;
         view.hexpand = true;
